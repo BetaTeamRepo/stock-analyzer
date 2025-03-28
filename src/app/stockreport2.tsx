@@ -8,7 +8,7 @@ interface StockReportChartProps {
 }
 
 export default function StockReportChart({ reportHtml }: StockReportChartProps) {
-  const [error, setError] = useState("");
+  const [error] = useState("");
   
 
   useEffect(() => {

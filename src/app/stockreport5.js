@@ -8,7 +8,7 @@ import { Send, Mic, StopCircle, Loader2 } from "lucide-react";
 
 export default function StockReport() {
   // State management
-  const [query, setQuery] = useState("Analyze GOOG technicals");
+  const [query, setQuery] = useState("");
   const [sections, setSections] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -16,17 +16,14 @@ export default function StockReport() {
   const [reportHtml, setReportHtml] = useState("");
   const [showChart, setShowChart] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [symbol, setSymbol] = useState("");
   const [audioFile, setAudioFile] = useState("");
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
-  const [newMessage, setNewMessage] = useState("");
 
   // ... (keep all your existing functions like generateReportFilename, handleAnalyze, processReport, etc.)
 
   
   const generateReportFilename = (symbol) => {
-    const timestamp = new Date().getTime();
     return `${symbol}_report.html`;
   };
 
@@ -39,7 +36,7 @@ export default function StockReport() {
 
     try {
       // Step 1: Make POST request to process_query
-      const analysisResponse = await fetch("http://localhost:8000/process_query", {
+      const analysisResponse = await fetch("https://stock-analyzer-all.onrender.com/process_query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +56,7 @@ export default function StockReport() {
 
       // Step 2: Generate filename and fetch report
       const filename = generateReportFilename(analysisData.symbol);
-      const reportResponse = await fetch(`http://localhost:8000/reports/${filename}`);
+      const reportResponse = await fetch(`https://stock-analyzer-all.onrender.com/reports/${filename}`);
 
       if (!reportResponse.ok) {
         throw new Error(`Report not found: ${reportResponse.status}`);
@@ -140,7 +137,7 @@ export default function StockReport() {
     formData.append("file", audioBlob, "audio.wav");
 
     try {
-      const response = await fetch("https://budgetadvisor.onrender.com/transcribe_audio", {
+      const response = await fetch("https://stock-analyzer-all.onrender.com/transcribe_audio", {
         method: "POST",
         body: formData,
       });
@@ -160,7 +157,6 @@ export default function StockReport() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Head>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <title>Stock Analysis Report</title>
       </Head>
 

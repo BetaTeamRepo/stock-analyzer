@@ -19,10 +19,6 @@ export default function StockReport() {
   const [reportHtml, setReportHtml] = useState("");
   const [showChart, setShowChart] = useState(false); // New state for chart visibility
 
-  const generateReportFilename = (symbol: string): string => {
-    return `reports/${symbol}_report.html`;
-  };
-
   const handleFetchReport = async () => {
     setLoading(true);
     setError("");
@@ -70,7 +66,6 @@ export default function StockReport() {
   return (
     <div>
       <Head>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <title>Stock Analysis Report</title>
       </Head>
 
