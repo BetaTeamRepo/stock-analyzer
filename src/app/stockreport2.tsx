@@ -58,7 +58,6 @@ export default function StockReportChart({ reportHtml }: StockReportChartProps) 
   return (
     <div>
       <Head>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <title>Stock Analysis Chart</title>
       </Head>
       
