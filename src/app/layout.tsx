@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BetterMoney",
+  title: "BetterStocks",
   description: "An AI project by Team Beta of Divverse Group",
 };
 
