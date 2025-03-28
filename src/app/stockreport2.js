@@ -3,12 +3,11 @@
 import { useState, useEffect } from "react";
 import Head from 'next/head';
 
-interface StockReportChartProps {
-  reportHtml: string;
-}
+// interface StockReportChartProps {
+//   reportHtml: string;
+// }
 
-export default function StockReportChart({ reportHtml }: StockReportChartProps) {
-  const [error] = useState("");
+export default function StockReportChart(reportHtml ) {
   
 
   useEffect(() => {
@@ -61,7 +60,6 @@ export default function StockReportChart({ reportHtml }: StockReportChartProps) 
         <title>Stock Analysis Chart</title>
       </Head>
       
-      {error && <p style={{ color: "red" }}>{error}</p>}
 
       {reportHtml && (
         <div
