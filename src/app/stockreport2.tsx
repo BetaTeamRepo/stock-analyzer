@@ -6,7 +6,7 @@ import Head from 'next/head';
 // Extend the Window interface to include Plotly
 declare global {
   interface Window {
-    Plotly: typeof import('plotly.js'); // You can replace 'any' with a more specific type if available
+    Plotly: unknown; // You can replace 'any' with a more specific type if available
   }
 }
 
@@ -51,9 +51,10 @@ export default function StockReportChart({ reportHtml }: StockReportChartProps) 
 
       // Ensure charts are re-initialized after script execution
       Promise.all(scriptPromises).then(() => {
-        if (window.Plotly) {
+        
+        if (window.Plotly && typeof window.Plotly === 'object') {
           console.log("Re-initializing Plotly charts...");
-          window.Plotly.redraw();
+          (window.Plotly as unknown as { redraw: () => void }).redraw();
         }
       });
     }
