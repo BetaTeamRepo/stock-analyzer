@@ -3,18 +3,13 @@
 import { useEffect } from "react";
 import Head from 'next/head';
 
-// Extend the Window interface to include Plotly
-declare global {
-  interface Window {
-    Plotly: any; // You can replace 'any' with a more specific type if available
-  }
-}
-
 interface StockReportChartProps {
   reportHtml: string;
 }
 
-export default function StockReportChart({ reportHtml }: StockReportChartProps) {
+export default function StockReportChart( { reportHtml }: StockReportChartProps)  {
+  
+
   useEffect(() => {
     if (reportHtml) {
       const container = document.getElementById("report-container");
@@ -65,6 +60,7 @@ export default function StockReportChart({ reportHtml }: StockReportChartProps) 
         <title>Stock Analysis Chart</title>
       </Head>
       
+
       {reportHtml && (
         <div
           id="report-container"
@@ -73,4 +69,4 @@ export default function StockReportChart({ reportHtml }: StockReportChartProps) 
       )}
     </div>
   );
-} 
+}
