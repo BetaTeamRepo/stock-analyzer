@@ -6,7 +6,7 @@ import Head from 'next/head';
 // Extend the Window interface to include Plotly
 declare global {
   interface Window {
-    Plotly: unknown; // You can replace 'any' with a more specific type if available
+    Plotly: typeof import('plotly.js'); // You can replace 'any' with a more specific type if available
   }
 }
 
