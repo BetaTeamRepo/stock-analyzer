@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 import Head from 'next/head';
 
-// interface StockReportChartProps {
-//   reportHtml: string;
-// }
+interface StockReportChartProps {
+  reportHtml: string;
+}
 
-export default function StockReportChart(reportHtml ) {
+export default function StockReportChart( { reportHtml }: StockReportChartProps)  {
   
 
   useEffect(() => {

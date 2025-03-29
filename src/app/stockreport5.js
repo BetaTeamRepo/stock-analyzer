@@ -51,7 +51,7 @@ export default function StockReport() {
       }
 
       const analysisData = await analysisResponse.json();
-      setSymbol(analysisData.symbol);
+      //setSymbol(analysisData.symbol);
       setAudioFile(analysisData?.audio_file || "");
 
       // Step 2: Generate filename and fetch report
@@ -101,7 +101,7 @@ export default function StockReport() {
     }
   }, [sections]);
 
-  // ✅ Start Recording
+  // Start Recording
   const handleStartRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -122,7 +122,7 @@ export default function StockReport() {
     }
   };
 
-  // ✅ Stop Recording and Send to FastAPI
+  // Stop Recording and Send to FastAPI
   const handleStopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
@@ -130,7 +130,7 @@ export default function StockReport() {
     }
   };
 
-   // ✅ Process Recorded Audio and Send to FastAPI for Transcription
+   // Process Recorded Audio and Send to FastAPI for Transcription
    const handleAudioStop = async () => {
     const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
     const formData = new FormData();
@@ -144,7 +144,7 @@ export default function StockReport() {
 
       const data = await response.json();
       if (data.transcription) {
-        setNewMessage(data.transcription); // ✅ Set recognized speech as input text
+        setNewMessage(data.transcription); // Set recognized speech as input text
       } else {
         console.error("Speech recognition failed:", data);
       }
@@ -226,7 +226,7 @@ export default function StockReport() {
             <div className="mt-4 bg-gray-50 p-4 rounded-lg">
               <h3 className="text-lg font-medium text-gray-800 mb-2">Audio Summary</h3>
               <audio controls className="w-full">
-                <source src={`https://localhost:8000/${audioFile}`} type="audio/mp3" />
+                <source src={`https://stock-analyzer-all.onrender.com/${audioFile}`} type="audio/mp3" />
                 Your browser does not support the audio element.
               </audio>
             </div>
